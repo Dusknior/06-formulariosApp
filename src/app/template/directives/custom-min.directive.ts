@@ -19,8 +19,6 @@ import {
 export class CustomMinDirective implements Validator {
   @Input() minimo!: number;
 
-  constructor() {}
-
   validate(control: FormControl): ValidationErrors | null {
     if (control.value < this.minimo) {
       return {

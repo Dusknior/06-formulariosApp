@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './basicos.component.html',
   styles: [],
 })
-export class BasicosComponent implements OnInit {
+export class BasicosComponent {
   @ViewChild('miFormulario') miFormulario!: NgForm;
 
   initForm = {
@@ -14,10 +14,6 @@ export class BasicosComponent implements OnInit {
     price: 0,
     stock: 0,
   };
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   nombreValido(): boolean {
     return (
