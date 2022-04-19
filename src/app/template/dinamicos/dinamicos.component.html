@@ -1,100 +1,86 @@
-<h2>Template: <small>Dinámicos</small></h2>
-<hr />
+<h2>Template: <small> Dinámicos </small></h2>
+<hr>
 
-<form (ngSubmit)="guardar()" #miFormulario="ngForm" autocomplete="off">
-  <!-- Nombre -->
-  <div class="row mb-3">
-    <label class="col-sm-3 col-form-label">Nombre</label>
-    <div class="col-sm-9">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Nombre de la persona"
-        [ngModel]="persona.nombre"
-        name="name"
-        minlength="0"
-        required
-      />
-      <small class="form-text text-muted" *ngIf="nombreValido()">
-        Este campo es obligatorio
-      </small>
+<form (ngSubmit)="guardar()" autocomplete="off" #miFormulario="ngForm">
+   
+    <!-- Nombre -->
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+            <input class="form-control"
+                   placeholder="Nombre de la persona"
+                   [ngModel]="persona.nombre"
+                   name="nombre"
+                   required>
+                <span class="form-text text-danger"
+                        *ngIf="miFormulario.controls.nombre?.errors && miFormulario.controls.nombre?.touched">
+                   Este campo es obligatorio
+               </span>
+        </div>
     </div>
-  </div>
 
-  <!-- Agregar Favorito -->
-  <div class="row mb-3">
-    <label class="col-sm-3 col-form-label">Agregar</label>
-    <div class="col-sm-9">
-      <div class="input-group">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Agregar juego favorito"
-          [(ngModel)]="nuevoFavorito"
-          (keyup.enter)="agregar()"
-          name="nuevoFavorito"
-        />
-        <button
-          class="btn btn-outline-primary"
-          type="button"
-          (click)="agregar()"
-        >
-          Agregar
-        </button>
-      </div>
+    <!-- Agregar Favorito -->
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Agregar</label>
+        <div class="col-sm-9">
+
+            <div class="input-group">
+                <input class="form-control"
+                       placeholder="Agregar favorito"
+                       [(ngModel)]="nuevoJuego"
+                       (keyup.enter)="agregarJuego()"
+                       name="nuevoJuego">
+
+                <button class="btn btn-outline-primary"
+                        type="button"
+                        (click)="agregarJuego()">
+                    Agregar
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- Lista de Juegos Favoritos -->
-  <div class="row mb-3">
-    <label class="col-sm-3 col-form-label">Favoritos</label>
-    <div class="col-sm-9">
-      <div
-        *ngFor="let juego of persona.favoritos; let i = index"
-        class="input-group mb-1"
-      >
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Agregar juego favorito"
-          [(ngModel)]="juego.nombre"
-          name="favorite_{{ i }}"
-          required
-        />
 
-        <button
-          class="btn btn-outline-danger"
-          type="button"
-          (click)="eliminar(i)"
-        >
-          Eliminar
-        </button>
-      </div>
+    <!-- Lista de Juegos Favoritos -->
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Favoritos</label>
+        <div class="col-sm-9">
+
+            <div class="input-group mb-1"
+                 *ngFor="let juego of persona.favoritos; let i = index">
+                <input [(ngModel)]="juego.nombre"
+                       name="favorito_{{ i }}"
+                       class="form-control"
+                       required>
+
+                <button class="btn btn-outline-danger"
+                        type="button"
+                        (click)="eliminar(i)">
+                   Eliminar
+               </button>
+            </div>
+
+        </div>
     </div>
-    <select class="form-select mt-2">
-      <option selected>Seleccionar juego</option>
-      <option
-        *ngFor="let juego of persona.favoritos; let i = index"
-        value="{{ i + 1 }}"
-      >
-        {{ juego.nombre }}
-      </option>
-    </select>
-  </div>
 
-  <div class="row">
-    <div class="col-sm">
-      <button
-        type="button"
-        class="btn btn-primary float-end"
-        (click)="guardar()"
-        [disabled]="miFormulario.invalid"
-      >
-        Guardar
-      </button>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <button type="button"
+                    class="btn btn-primary float-end"
+                    [disabled]="miFormulario.invalid"
+                    (click)="guardar()">
+                Guardar
+            </button>
+        </div>
     </div>
-  </div>
+
+
 </form>
 
-<h5>Persona</h5>
+
+
+
+<span>Persona</span>
 <pre>{{ persona | json }}</pre>

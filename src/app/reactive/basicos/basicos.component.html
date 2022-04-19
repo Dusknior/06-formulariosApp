@@ -1,90 +1,96 @@
-<h2>Reactivos: <small>Básicos</small></h2>
-<hr />
+<h2>Reactivos: Básicos</h2>
+<hr>
 
 <div class="row">
-  <div class="col">
-    <form (ngSubmit)="guardar()" autocomplete="off" [formGroup]="miFormulario">
-      <!-- Campo de Producto -->
-      <div class="form-group row mb-3">
-        <label class="col-sm-3 col-form-label"><strong>Producto</strong></label>
-        <div class="col-sm-9">
-          <input
-            type="text"
-            class="form-control"
-            formControlName="nombre"
-            id="productInput"
-            placeholder="Ingrese el producto"
-          />
-          <small class="form-text text-muted" *ngIf="campoValido('nombre')">
-            Debe ingresar por lo menos 3 letras
-          </small>
-        </div>
-      </div>
+    <div class="col">
 
-      <!-- Campo de Precio -->
-      <div class="form-group row mb-3">
-        <label class="col-sm-3 col-form-label"><strong>Precio</strong></label>
-        <div class="col-sm-9">
-          <input
-            type="number"
-            class="form-control"
-            formControlName="precio"
-            id="priceInput"
-            placeholder="Ingrese el precio"
-          />
-          <small class="form-text text-muted" *ngIf="campoValido('precio')">
-            Debe ingresar un valor mayor o igual a 0
-          </small>
-        </div>
-      </div>
+        <form (ngSubmit)="guardar()" autocomplete="off" [formGroup]="miFormulario">
+            
+            <!-- Campo de producto -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Producto</label>
+                <div class="col-sm-9">
+                    
+                    <input type="text"
+                           class="form-control"
+                           formControlName="nombre"
+                           placeholder="Nombre del producto">
 
-      <!-- Campo de Existencias -->
-      <div class="form-group row mb-3">
-        <label class="col-sm-3 col-form-label"
-          ><strong>Inventario</strong></label
-        >
-        <div class="col-sm-9">
-          <input
-            type="number"
-            class="form-control"
-            formControlName="existencias"
-            id="stockInput"
-            placeholder="Ingrese el inventario disponible"
-          />
-          <small
-            class="form-text text-muted"
-            *ngIf="campoValido('existencias')"
-          >
-            Debe ingresar un valor mayor o igual a 0
-          </small>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <button type="submit" class="btn btn-primary float-end">
-            Guardar
-          </button>
-        </div>
-      </div>
-    </form>
-  </div>
+                    <span class="form-text text-danger"
+                          *ngIf="campoEsValido('nombre')">
+                        Debe de ser de 3 letras
+                    </span>
+                </div>
+            </div>
+
+            <!-- Campo de producto -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Precio</label>
+                <div class="col-sm-9">
+                    <input type="number"
+                           class="form-control"
+                           formControlName="precio"
+                           placeholder="Precio del producto">
+                    <span class="form-text text-danger"
+                          *ngIf="campoEsValido('precio')">
+                        El precio debe de ser 0 o mayor
+                    </span>
+                </div>
+            </div>
+
+            <!-- Campo de existencias -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Existencias</label>
+                <div class="col-sm-9">
+                    <input type="number"
+                           class="form-control"
+                           formControlName="existencias"
+                           placeholder="Existencias del producto">
+                    
+                    <span class="form-text text-danger"
+                           *ngIf="campoEsValido('existencias')">
+                         Las existencias deben de ser 0 o mayor
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit"
+                            class="btn btn-primary float-end">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+
+
+
+        </form>
+
+    </div>
 </div>
+
+
+
 
 <div class="row">
-  <div class="col">
-    <span>Valid</span>
-    <pre> {{ miFormulario.valid }}</pre>
+    <div class="col">
 
-    <span>Pristine</span>
-    <pre> {{ miFormulario.pristine }}</pre>
+        <span>Valid</span>
+        <pre>{{ miFormulario.valid }}</pre>
 
-    <span>TOuched</span>
-    <pre> {{ miFormulario.touched }}</pre>
+        <span>Pristine</span>
+        <pre>{{ miFormulario.pristine }}</pre>
 
-    <span>Value</span>
-    <pre> {{ miFormulario.value | json }}</pre>
+        <span>Touched</span>
+        <pre>{{ miFormulario.touched }}</pre>
 
-    <span>Precio</span>
-    <pre> {{ miFormulario.controls["precio"].errors | json }}</pre>
-  </div>
+        <span>Value</span>
+        <pre>{{ miFormulario.value | json }}</pre>
+
+        <span>Precio</span>
+        <pre>{{ miFormulario.controls.precio.errors | json }}</pre>
+    </div>
 </div>
+
